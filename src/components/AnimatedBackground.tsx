@@ -1,6 +1,5 @@
 
 import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 
 const AnimatedBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -12,11 +11,13 @@ const AnimatedBackground: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
+    // Set initial dimensions
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
+    // Reduce number of particles for better performance
     let particlesArray: Particle[] = [];
-    const numberOfParticles = 100;
+    const numberOfParticles = Math.min(60, Math.floor(window.innerWidth * window.innerHeight / 20000));
     
     class Particle {
       x: number;
@@ -63,16 +64,18 @@ const AnimatedBackground: React.FC = () => {
     
     function createParticles() {
       for (let i = 0; i < numberOfParticles; i++) {
-        const size = Math.random() * 5 + 1;
+        const size = Math.random() * 4 + 1; // Slightly smaller particles
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
-        const speedX = Math.random() * 0.5 - 0.25;
-        const speedY = Math.random() * 0.5 - 0.25;
+        const speedX = Math.random() * 0.3 - 0.15; // Slower movement
+        const speedY = Math.random() * 0.3 - 0.15;
         const color = `rgba(255, 111, 0, ${Math.random() * 0.2 + 0.1})`;
         
         particlesArray.push(new Particle(x, y, size, speedX, speedY, color));
       }
     }
+    
+    let animationFrameId: number;
     
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -82,18 +85,24 @@ const AnimatedBackground: React.FC = () => {
         particlesArray[i].draw(ctx);
       }
       
-      requestAnimationFrame(animateParticles);
+      // Connect particles less frequently for better performance
+      if (particlesArray.length <= 60) {
+        connectParticles();
+      }
+      
+      animationFrameId = requestAnimationFrame(animateParticles);
     }
     
     function connectParticles() {
+      const maxDistance = Math.min(100, window.innerWidth / 10);
       for (let a = 0; a < particlesArray.length; a++) {
         for (let b = a; b < particlesArray.length; b++) {
           const dx = particlesArray[a].x - particlesArray[b].x;
           const dy = particlesArray[a].y - particlesArray[b].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 100) {
-            ctx.strokeStyle = `rgba(255, 111, 0, ${0.2 - distance/500})`;
+          if (distance < maxDistance) {
+            ctx.strokeStyle = `rgba(255, 111, 0, ${0.15 - distance/maxDistance/10})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -104,18 +113,26 @@ const AnimatedBackground: React.FC = () => {
       }
     }
     
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      particlesArray = [];
-      createParticles();
-    });
+    // Handle resize with throttling for better performance
+    let resizeTimeout: ReturnType<typeof setTimeout>;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particlesArray = [];
+        createParticles();
+      }, 200);
+    };
+    
+    window.addEventListener('resize', handleResize);
     
     createParticles();
     animateParticles();
     
     return () => {
-      window.removeEventListener('resize', () => {});
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
   

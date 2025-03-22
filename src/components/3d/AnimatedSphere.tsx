@@ -2,6 +2,7 @@
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Sphere, MeshDistortMaterial } from '@react-three/drei';
+import * as THREE from 'three';
 
 interface AnimatedSphereProps {
   position?: [number, number, number];
