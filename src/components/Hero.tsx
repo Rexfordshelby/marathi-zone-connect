@@ -1,8 +1,12 @@
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowDown } from 'lucide-react';
+import FloatingObjects from './3d/FloatingObjects';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import AnimatedLogo from './3d/AnimatedLogo';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -36,7 +40,27 @@ const Hero: React.FC = () => {
         </video>
       </div>
 
+      {/* 3D Floating Objects */}
+      <FloatingObjects className="opacity-60" />
+
       <div className="container mx-auto px-4 py-20 relative z-20 text-center">
+        {/* 3D Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="w-full h-[200px] mb-8"
+        >
+          <Suspense fallback={<div className="text-white">Loading 3D...</div>}>
+            <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+              <ambientLight intensity={0.5} />
+              <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
+              <AnimatedLogo text="ZONE" />
+              <OrbitControls enableZoom={false} enablePan={false} />
+            </Canvas>
+          </Suspense>
+        </motion.div>
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -76,18 +100,22 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.8 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <button 
+            <motion.button 
+              whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(255, 111, 0, 0.3)" }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection('services')}
               className="btn-primary min-w-[160px]"
             >
               {t('hero.buttons.learnMore')}
-            </button>
-            <button 
+            </motion.button>
+            <motion.button 
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 111, 0, 0.1)" }}
+              whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection('contact')}
               className="btn-secondary min-w-[160px]"
             >
               {t('hero.buttons.contactUs')}
-            </button>
+            </motion.button>
           </motion.div>
         </motion.div>
       </div>

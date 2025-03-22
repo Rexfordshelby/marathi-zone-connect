@@ -7,6 +7,7 @@ import ServicesSection from '@/components/ServicesSection';
 import CelebritySection from '@/components/CelebritySection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import AnimatedBackground from '@/components/AnimatedBackground';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 
@@ -18,11 +19,12 @@ const Index = () => {
 
   return (
     <LanguageProvider>
+      <AnimatedBackground />
       <motion.div
         initial="hidden"
         animate="visible"
         variants={fadeInVariants}
-        className="min-h-screen"
+        className="min-h-screen relative z-10"
       >
         <Navbar transparent={true} />
         <main>

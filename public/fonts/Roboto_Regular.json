@@ -1,0 +1,60 @@
+
+{
+  "glyphs": {
+    "Z": {
+      "ha": 600,
+      "x_min": 50,
+      "x_max": 550,
+      "o": "m 50 700 l 50 640 l 465 640 l 50 60 l 50 0 l 550 0 l 550 60 l 135 60 l 550 640 l 550 700 l 50 700 z"
+    },
+    "O": {
+      "ha": 732,
+      "x_min": 41,
+      "x_max": 691,
+      "o": "m 366 -14 q 585 98 505 -14 q 691 367 691 240 q 585 636 691 494 q 366 748 505 748 q 147 636 226 748 q 41 367 41 494 q 147 98 41 240 q 366 -14 226 -14 m 366 60 q 200 147 258 60 q 127 367 127 253 q 200 587 127 481 q 366 674 258 674 q 532 587 474 674 q 605 367 605 481 q 532 147 605 253 q 366 60 474 60 z"
+    },
+    "N": {
+      "ha": 773,
+      "x_min": 76,
+      "x_max": 697,
+      "o": "m 76 0 l 162 0 l 162 566 l 640 0 l 697 0 l 697 700 l 611 700 l 611 137 l 134 700 l 76 700 l 76 0 z"
+    },
+    "E": {
+      "ha": 620,
+      "x_min": 76,
+      "x_max": 569,
+      "o": "m 569 0 l 569 70 l 162 70 l 162 315 l 554 315 l 554 385 l 162 385 l 162 630 l 569 630 l 569 700 l 76 700 l 76 0 l 569 0 z"
+    }
+  },
+  "familyName": "Roboto",
+  "ascender": 750,
+  "descender": -250,
+  "underlinePosition": -100,
+  "underlineThickness": 50,
+  "boundingBox": {
+    "yMin": -555,
+    "xMin": -910,
+    "yMax": 2163,
+    "xMax": 3444
+  },
+  "resolution": 1000,
+  "original_font_information": {
+    "format": 0,
+    "copyright": "Copyright 2011 Google Inc. All Rights Reserved.",
+    "fontFamily": "Roboto",
+    "fontSubfamily": "Regular",
+    "uniqueID": "Roboto Regular",
+    "fullName": "Roboto Regular",
+    "version": "Version 2.137; 2017",
+    "postScriptName": "Roboto-Regular",
+    "trademark": "Roboto is a trademark of Google.",
+    "manufacturer": "Google",
+    "designer": "Google",
+    "manufacturerURL": "http://www.google.com/",
+    "designerURL": "http://www.google.com/",
+    "licence": "Licensed under the Apache License, Version 2.0",
+    "licenceURL": "http://www.apache.org/licenses/LICENSE-2.0"
+  },
+  "cssFontWeight": "normal",
+  "cssFontStyle": "normal"
+}
