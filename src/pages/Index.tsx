@@ -1,13 +1,40 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import Navbar from '@/components/NavBar';
+import Hero from '@/components/Hero';
+import AboutSection from '@/components/AboutSection';
+import ServicesSection from '@/components/ServicesSection';
+import CelebritySection from '@/components/CelebritySection';
+import ContactSection from '@/components/ContactSection';
+import Footer from '@/components/Footer';
+import { LanguageProvider } from '@/contexts/LanguageContext';
+import { motion } from 'framer-motion';
 
 const Index = () => {
+  const fadeInVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.6 } }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <LanguageProvider>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={fadeInVariants}
+        className="min-h-screen"
+      >
+        <Navbar transparent={true} />
+        <main>
+          <Hero />
+          <AboutSection />
+          <ServicesSection />
+          <CelebritySection limit={3} showViewAll={true} />
+          <ContactSection />
+        </main>
+        <Footer />
+      </motion.div>
+    </LanguageProvider>
   );
 };
 
