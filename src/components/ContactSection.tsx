@@ -76,17 +76,54 @@ const ContactSection: React.FC = () => {
     
     setIsSubmitting(true);
     
-    // Simulate sending data to an API
     try {
-      // In a real application, you would send this data to your backend
-      // await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData)
-      // });
+      // Create a formatted email message
+      const emailBody = `
+        Name: ${formData.name}
+        Email: ${formData.email}
+        Phone: ${formData.phone}
+        Message: ${formData.message}
+      `;
       
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Send email using mailto link that opens in a new tab
+      const mailtoLink = `mailto:zonemarathi@gmail.com?subject=Contact Form Submission&body=${encodeURIComponent(emailBody)}`;
+      window.open(mailtoLink, '_blank');
+      
+      // Also use the browser's built-in email functionality as a backup
+      const formElement = document.createElement('form');
+      formElement.setAttribute('action', 'https://formsubmit.co/zonemarathi@gmail.com');
+      formElement.setAttribute('method', 'POST');
+      
+      // Add form fields
+      const nameInput = document.createElement('input');
+      nameInput.setAttribute('type', 'hidden');
+      nameInput.setAttribute('name', 'name');
+      nameInput.setAttribute('value', formData.name);
+      
+      const emailInput = document.createElement('input');
+      emailInput.setAttribute('type', 'hidden');
+      emailInput.setAttribute('name', 'email');
+      emailInput.setAttribute('value', formData.email);
+      
+      const phoneInput = document.createElement('input');
+      phoneInput.setAttribute('type', 'hidden');
+      phoneInput.setAttribute('name', 'phone');
+      phoneInput.setAttribute('value', formData.phone);
+      
+      const messageInput = document.createElement('input');
+      messageInput.setAttribute('type', 'hidden');
+      messageInput.setAttribute('name', 'message');
+      messageInput.setAttribute('value', formData.message);
+      
+      // Add fields to form
+      formElement.appendChild(nameInput);
+      formElement.appendChild(emailInput);
+      formElement.appendChild(phoneInput);
+      formElement.appendChild(messageInput);
+      
+      // Add form to document and submit
+      document.body.appendChild(formElement);
+      formElement.submit();
       
       toast({
         title: t('contact.form.successTitle'),

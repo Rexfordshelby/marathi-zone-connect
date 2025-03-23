@@ -23,7 +23,7 @@ const initialCelebrities: Celebrity[] = [
     id: '1',
     name: 'Raveena Tandon',
     profession: 'Bollywood Actress',
-    image: 'https://via.placeholder.com/300x400?text=Raveena+Tandon',
+    image: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7',
     availability: true,
     socialLinks: {
       instagram: 'https://instagram.com/officialraveenatandon'
@@ -36,7 +36,7 @@ const initialCelebrities: Celebrity[] = [
     id: '2',
     name: 'Sonali Kulkarni',
     profession: 'Marathi & Bollywood Actress',
-    image: 'https://via.placeholder.com/300x400?text=Sonali+Kulkarni',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158',
     availability: true,
     socialLinks: {
       instagram: 'https://instagram.com/sonalikulkarni'
@@ -49,7 +49,7 @@ const initialCelebrities: Celebrity[] = [
     id: '3',
     name: 'Sayli Sanjeev',
     profession: 'Marathi Actress',
-    image: 'https://via.placeholder.com/300x400?text=Sayli+Sanjeev',
+    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
     availability: true,
     socialLinks: {
       instagram: 'https://instagram.com/sayali.sanjeev'
@@ -62,7 +62,7 @@ const initialCelebrities: Celebrity[] = [
     id: '4',
     name: 'Shivani Surve',
     profession: 'Marathi & Hindi TV Actress',
-    image: 'https://via.placeholder.com/300x400?text=Shivani+Surve',
+    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
     availability: true,
     socialLinks: {
       instagram: 'https://instagram.com/shivanisurve'
@@ -75,7 +75,7 @@ const initialCelebrities: Celebrity[] = [
     id: '5',
     name: 'Shreya Bugde',
     profession: 'Marathi TV & Film Actress',
-    image: 'https://via.placeholder.com/300x400?text=Shreya+Bugde',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475',
     availability: true,
     socialLinks: {
       instagram: 'https://instagram.com/shreyabugade'
