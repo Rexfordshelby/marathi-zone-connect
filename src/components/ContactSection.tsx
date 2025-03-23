@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { PhoneCall, Mail, MapPin, Send, AlertCircle, Check } from 'lucide-react';
+import { PhoneCall, Mail, MapPin, Send, AlertCircle, Instagram } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface FormData {
@@ -158,8 +158,8 @@ const ContactSection: React.FC = () => {
                     <h4 className="text-sm font-medium text-zoneBlack/60 mb-1">
                       {t('contact.info.phone')}
                     </h4>
-                    <a href="tel:+911234567890" className="text-zoneBlack hover:text-orange transition-colors">
-                      +91 1234567890
+                    <a href="tel:+917715808527" className="text-zoneBlack hover:text-orange transition-colors">
+                      +91 7715808527
                     </a>
                   </div>
                 </div>
@@ -187,9 +187,23 @@ const ContactSection: React.FC = () => {
                       {t('contact.info.address')}
                     </h4>
                     <p className="text-zoneBlack">
-                      {t('contact.info.addressLine1')}<br />
-                      {t('contact.info.addressLine2')}
+                      Udaymitra CHS A Wing, Room No. 01,<br />
+                      Kurla East, Mumbai - 400024
                     </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 rounded-full bg-orange/10 flex items-center justify-center flex-shrink-0">
+                    <Instagram className="text-orange w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-medium text-zoneBlack/60 mb-1">
+                      Instagram
+                    </h4>
+                    <a href="https://instagram.com/iamhaarisss777" target="_blank" rel="noopener noreferrer" className="text-zoneBlack hover:text-orange transition-colors">
+                      @iamhaarisss777
+                    </a>
                   </div>
                 </div>
               </div>
@@ -197,7 +211,7 @@ const ContactSection: React.FC = () => {
               {/* Live Chat Button */}
               <div className="mt-8">
                 <a 
-                  href="https://wa.me/911234567890" 
+                  href="https://wa.me/917715808527" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="block w-full py-3 bg-green-500 text-white text-center rounded-lg 
@@ -210,11 +224,16 @@ const ContactSection: React.FC = () => {
             
             {/* Map or additional info can go here */}
             <div className="bg-white shadow-lg rounded-xl p-6 h-64 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
-                <MapPin className="w-10 h-10 text-gray-400" />
-                <span className="ml-2 text-gray-500 font-medium">
-                  {t('contact.mapLoading')}
-                </span>
+              <div className="absolute inset-0">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.9170871754856!2d72.88961!3d19.0697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8866a456c9f%3A0x38adaec65c89b957!2sKurla%20East%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1650450351201!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </div>
           </motion.div>

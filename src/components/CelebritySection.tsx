@@ -9,57 +9,80 @@ import {
   Twitter, 
   Youtube,
   ArrowRight,
-  ArrowLeft
+  ArrowLeft,
+  Award,
+  Film
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Celebrity } from '@/types';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 // Note: In a real application, this would be fetched from an API
 const initialCelebrities: Celebrity[] = [
   {
     id: '1',
-    name: 'Aamir Khan',
-    profession: 'Actor',
-    image: '/images/celebrities/aamir.jpg',
+    name: 'Raveena Tandon',
+    profession: 'Bollywood Actress',
+    image: 'https://via.placeholder.com/300x400?text=Raveena+Tandon',
     availability: true,
     socialLinks: {
-      instagram: 'https://instagram.com',
-      facebook: 'https://facebook.com',
-      twitter: 'https://twitter.com'
-    }
+      instagram: 'https://instagram.com/officialraveenatandon'
+    },
+    bio: 'Raveena Tandon is a renowned Bollywood actress known for her versatile performances across genres.',
+    notableWorks: ['Mohra', 'Andaz Apna Apna', 'Daman'],
+    awards: ['National Film Award for Best Actress']
   },
   {
     id: '2',
-    name: 'Madhuri Dixit',
-    profession: 'Actress',
-    image: '/images/celebrities/madhuri.jpg',
+    name: 'Sonali Kulkarni',
+    profession: 'Marathi & Bollywood Actress',
+    image: 'https://via.placeholder.com/300x400?text=Sonali+Kulkarni',
     availability: true,
     socialLinks: {
-      instagram: 'https://instagram.com',
-      facebook: 'https://facebook.com'
-    }
+      instagram: 'https://instagram.com/sonalikulkarni'
+    },
+    bio: 'Sonali Kulkarni is a versatile actress who has made her mark in both Marathi and Bollywood cinema.',
+    notableWorks: ['Dil Chahta Hai', 'Deool', 'Gulabjaam'],
+    awards: ['Filmfare Marathi Award']
   },
   {
     id: '3',
-    name: 'Sachin Tendulkar',
-    profession: 'Cricketer',
-    image: '/images/celebrities/sachin.jpg',
-    availability: false,
+    name: 'Sayli Sanjeev',
+    profession: 'Marathi Actress',
+    image: 'https://via.placeholder.com/300x400?text=Sayli+Sanjeev',
+    availability: true,
     socialLinks: {
-      instagram: 'https://instagram.com',
-      twitter: 'https://twitter.com'
-    }
+      instagram: 'https://instagram.com/sayali.sanjeev'
+    },
+    bio: 'Sayli Sanjeev is a talented Marathi actress known for her impactful performances in television and films.',
+    notableWorks: ['Kahe Diya Pardes', 'Jhimma'],
+    awards: ['Zee Marathi Award']
   },
   {
     id: '4',
-    name: 'Shreya Ghoshal',
-    profession: 'Singer',
-    image: '/images/celebrities/shreya.jpg',
+    name: 'Shivani Surve',
+    profession: 'Marathi & Hindi TV Actress',
+    image: 'https://via.placeholder.com/300x400?text=Shivani+Surve',
     availability: true,
     socialLinks: {
-      instagram: 'https://instagram.com',
-      youtube: 'https://youtube.com'
-    }
+      instagram: 'https://instagram.com/shivanisurve'
+    },
+    bio: 'Shivani Surve has made a significant impact in both Marathi and Hindi television industries.',
+    notableWorks: ['Jaana Na Dil Se Door', 'Devyani'],
+    awards: ['ITA Award Nominee']
+  },
+  {
+    id: '5',
+    name: 'Shreya Bugde',
+    profession: 'Marathi TV & Film Actress',
+    image: 'https://via.placeholder.com/300x400?text=Shreya+Bugde',
+    availability: true,
+    socialLinks: {
+      instagram: 'https://instagram.com/shreyabugade'
+    },
+    bio: 'Shreya Bugde is a popular comedienne and actress in Marathi television and cinema.',
+    notableWorks: ['Chala Hawa Yeu Dya', 'Bhootacha Honeymoon'],
+    awards: ['Zee Marathi Awards']
   }
 ];
 
@@ -160,7 +183,7 @@ const CelebritySection: React.FC<CelebritySectionProps> = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="card group overflow-hidden"
+                className="card group overflow-hidden bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow"
               >
                 <div className="relative h-72 mb-6 rounded-lg overflow-hidden">
                   <img 
@@ -207,6 +230,33 @@ const CelebritySection: React.FC<CelebritySectionProps> = ({
                 <p className="text-orange mb-4">
                   {celebrity.profession}
                 </p>
+                
+                {/* Notable Works */}
+                {celebrity.notableWorks && celebrity.notableWorks.length > 0 && (
+                  <div className="mb-3">
+                    <div className="flex items-center text-sm text-gray-600 mb-1">
+                      <Film size={14} className="mr-1" />
+                      <span className="font-medium">Notable Works:</span>
+                    </div>
+                    <p className="text-sm text-gray-700 pl-5">
+                      {celebrity.notableWorks.join(', ')}
+                    </p>
+                  </div>
+                )}
+                
+                {/* Awards */}
+                {celebrity.awards && celebrity.awards.length > 0 && (
+                  <div className="mb-4">
+                    <div className="flex items-center text-sm text-gray-600 mb-1">
+                      <Award size={14} className="mr-1" />
+                      <span className="font-medium">Awards:</span>
+                    </div>
+                    <p className="text-sm text-gray-700 pl-5">
+                      {celebrity.awards.join(', ')}
+                    </p>
+                  </div>
+                )}
+                
                 <a 
                   href={`/celebrities/${celebrity.id}`} 
                   className="inline-flex items-center text-zoneBlack/70 font-medium 

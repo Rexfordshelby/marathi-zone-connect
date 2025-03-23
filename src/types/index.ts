@@ -14,6 +14,8 @@ export interface Celebrity {
   bio?: string;
   events?: string[];
   achievements?: string[];
+  notableWorks?: string[];
+  awards?: string[];
 }
 
 export interface AdminUser {
