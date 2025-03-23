@@ -18,7 +18,7 @@ const Index = () => {
     // Allow for initial render to complete before showing animations
     const timer = setTimeout(() => {
       setIsLoaded(true);
-    }, 500);
+    }, 300);
     
     return () => clearTimeout(timer);
   }, []);
@@ -43,29 +43,23 @@ const Index = () => {
 
   return (
     <LanguageProvider>
-      <Suspense fallback={
-        <div className="min-h-screen bg-black flex items-center justify-center">
-          <div className="text-white text-2xl font-bold">Loading...</div>
-        </div>
-      }>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={fadeInVariants}
+        className="min-h-screen relative z-10"
+      >
+        <Navbar transparent={true} />
+        <main>
+          <Hero />
+          <AboutSection />
+          <ServicesSection />
+          <CelebritySection limit={3} showViewAll={true} />
+          <ContactSection />
+        </main>
+        <Footer />
         <AnimatedBackground />
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeInVariants}
-          className="min-h-screen relative z-10"
-        >
-          <Navbar transparent={true} />
-          <main>
-            <Hero />
-            <AboutSection />
-            <ServicesSection />
-            <CelebritySection limit={3} showViewAll={true} />
-            <ContactSection />
-          </main>
-          <Footer />
-        </motion.div>
-      </Suspense>
+      </motion.div>
     </LanguageProvider>
   );
 };

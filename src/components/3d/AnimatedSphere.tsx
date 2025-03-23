@@ -22,23 +22,20 @@ const AnimatedSphere: React.FC<AnimatedSphereProps> = ({
   useFrame((state) => {
     if (!meshRef.current) return;
     
-    // Rotate the sphere
-    meshRef.current.rotation.x = state.clock.getElapsedTime() * speed;
-    meshRef.current.rotation.y = state.clock.getElapsedTime() * speed * 0.5;
-    
-    // Subtle position change for floating effect
-    meshRef.current.position.y = Math.sin(state.clock.getElapsedTime() * 0.5) * 0.2;
+    // Reduced animation complexity
+    meshRef.current.rotation.x = state.clock.getElapsedTime() * speed * 0.5;
+    meshRef.current.rotation.y = state.clock.getElapsedTime() * speed * 0.3;
   });
 
   return (
-    <Sphere args={[1, 64, 64]} position={position} ref={meshRef}>
+    <Sphere args={[1, 32, 32]} position={position} ref={meshRef}>
       <MeshDistortMaterial 
         color={color} 
         attach="material" 
         distort={distort} 
-        speed={0.5} 
-        roughness={0.2} 
-        metalness={0.8}
+        speed={0.3} 
+        roughness={0.4} 
+        metalness={0.5}
       />
     </Sphere>
   );

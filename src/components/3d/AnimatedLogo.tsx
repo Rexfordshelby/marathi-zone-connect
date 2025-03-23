@@ -20,7 +20,8 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
   
   useFrame((state) => {
     if (!textRef.current) return;
-    textRef.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.3) * 0.15;
+    // Simplified animation
+    textRef.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.1;
   });
 
   return (
@@ -30,12 +31,12 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
         font="/fonts/Roboto_Regular.json"
         size={1.5}
         height={0.2}
-        curveSegments={12}
+        curveSegments={8}
         bevelEnabled
         bevelThickness={0.02}
         bevelSize={0.02}
         bevelOffset={0}
-        bevelSegments={5}
+        bevelSegments={3}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
       >
@@ -44,8 +45,8 @@ const AnimatedLogo: React.FC<AnimatedLogoProps> = ({
           color={hovered ? hoverColor : color} 
           emissive={hovered ? color : undefined}
           emissiveIntensity={hovered ? 0.5 : 0}
-          metalness={0.8} 
-          roughness={0.1} 
+          metalness={0.7} 
+          roughness={0.2} 
         />
       </Text3D>
     </Center>

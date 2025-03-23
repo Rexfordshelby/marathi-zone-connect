@@ -11,14 +11,22 @@ import AnimatedLogo from './3d/AnimatedLogo';
 const Hero: React.FC = () => {
   const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(true);
+  const [showLogo, setShowLogo] = useState(false);
 
   useEffect(() => {
     // Simulate resource loading
     const timer = setTimeout(() => {
       setIsLoading(false);
+    }, 500);
+    
+    const logoTimer = setTimeout(() => {
+      setShowLogo(true);
     }, 1000);
     
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(logoTimer);
+    };
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -50,8 +58,8 @@ const Hero: React.FC = () => {
         </video>
       </div>
 
-      {/* Render 3D elements only when not loading */}
-      {!isLoading && <FloatingObjects className="opacity-60" />}
+      {/* Only render 3D elements when not loading */}
+      {!isLoading && <FloatingObjects className="opacity-50" />}
 
       <div className="container mx-auto px-4 py-20 relative z-20 text-center">
         {/* Loading indicator */}
@@ -62,31 +70,35 @@ const Hero: React.FC = () => {
             className="text-white text-2xl font-bold flex flex-col items-center justify-center h-[200px]"
           >
             <div className="w-12 h-12 rounded-full border-4 border-orange border-t-transparent animate-spin mb-4"></div>
-            <span>Loading 3D Elements...</span>
+            <span>Loading Experience...</span>
           </motion.div>
         ) : (
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full h-[200px] mb-8"
           >
-            <Suspense fallback={
-              <div className="text-white text-xl font-bold flex items-center justify-center h-full">
-                <div className="w-10 h-10 rounded-full border-4 border-orange border-t-transparent animate-spin mr-3"></div>
-                Loading 3D...
-              </div>
-            }>
-              <Canvas 
-                camera={{ position: [0, 0, 5], fov: 75 }}
-                dpr={[1, 2]} // Optimize resolution
-              >
-                <ambientLight intensity={0.5} />
-                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} castShadow />
-                <AnimatedLogo text="ZONE" />
-                <OrbitControls enableZoom={false} enablePan={false} />
-              </Canvas>
-            </Suspense>
+            {showLogo && (
+              <Suspense fallback={
+                <div className="text-white text-xl font-bold flex items-center justify-center h-full">
+                  <div className="w-10 h-10 rounded-full border-4 border-orange border-t-transparent animate-spin mr-3"></div>
+                  Loading 3D...
+                </div>
+              }>
+                <Canvas 
+                  camera={{ position: [0, 0, 5], fov: 75 }}
+                  dpr={[0.5, 1.5]} // Optimize resolution
+                  frameloop="demand"
+                  gl={{ powerPreference: "low-power" }}
+                >
+                  <ambientLight intensity={0.4} />
+                  <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={0.8} castShadow />
+                  <AnimatedLogo text="ZONE" />
+                  <OrbitControls enableZoom={false} enablePan={false} />
+                </Canvas>
+              </Suspense>
+            )}
           </motion.div>
         )}
         
