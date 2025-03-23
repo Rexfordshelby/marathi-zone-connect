@@ -1,5 +1,5 @@
 
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/NavBar';
 import Hero from '@/components/Hero';
 import AboutSection from '@/components/AboutSection';
@@ -18,15 +18,10 @@ const Index = () => {
     // Allow for initial render to complete before showing animations
     const timer = setTimeout(() => {
       setIsLoaded(true);
-    }, 300);
+    }, 500);
     
     return () => clearTimeout(timer);
   }, []);
-
-  const fadeInVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.6 } }
-  };
 
   // Show a simple loading state initially
   if (!isLoaded) {
@@ -46,7 +41,10 @@ const Index = () => {
       <motion.div
         initial="hidden"
         animate="visible"
-        variants={fadeInVariants}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { opacity: 1, transition: { duration: 0.6 } }
+        }}
         className="min-h-screen relative z-10"
       >
         <Navbar transparent={true} />

@@ -1,7 +1,7 @@
 
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Sphere, MeshDistortMaterial } from '@react-three/drei';
+import { Sphere } from '@react-three/drei';
 import * as THREE from 'three';
 
 interface AnimatedSphereProps {
@@ -22,22 +22,20 @@ const AnimatedSphere: React.FC<AnimatedSphereProps> = ({
   useFrame((state) => {
     if (!meshRef.current) return;
     
-    // Reduced animation complexity
+    // Simplified animation to prevent performance issues
     meshRef.current.rotation.x = state.clock.getElapsedTime() * speed * 0.5;
     meshRef.current.rotation.y = state.clock.getElapsedTime() * speed * 0.3;
   });
 
   return (
-    <Sphere args={[1, 32, 32]} position={position} ref={meshRef}>
-      <MeshDistortMaterial 
+    <mesh ref={meshRef} position={position}>
+      <sphereGeometry args={[1, 32, 32]} />
+      <meshStandardMaterial 
         color={color} 
-        attach="material" 
-        distort={distort} 
-        speed={0.3} 
         roughness={0.4} 
         metalness={0.5}
       />
-    </Sphere>
+    </mesh>
   );
 };
 

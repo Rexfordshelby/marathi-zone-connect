@@ -1,7 +1,6 @@
 
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float } from '@react-three/drei';
 import AnimatedSphere from './AnimatedSphere';
 
 interface FloatingObjectsProps {
@@ -15,22 +14,19 @@ const FloatingObjects: React.FC<FloatingObjectsProps> = ({ className = "" }) => 
         camera={{ position: [0, 0, 5], fov: 75 }} 
         dpr={[0.5, 1]} // Lower resolution for better performance
         frameloop="demand" // Only render when needed
-        performance={{ min: 0.2 }} // Lower performance threshold for better compatibility
         gl={{ powerPreference: "low-power" }}
       >
+        <ambientLight intensity={0.3} />
+        <pointLight position={[10, 10, 10]} intensity={0.6} />
+        
         <Suspense fallback={null}>
-          <ambientLight intensity={0.3} />
-          <pointLight position={[10, 10, 10]} intensity={0.6} />
+          <group position={[-4, 1, -2]}>
+            <AnimatedSphere color="#ff6f00" speed={0.05} />
+          </group>
           
-          <Float speed={1.5} rotationIntensity={0.4} floatIntensity={0.8}>
-            <AnimatedSphere position={[-4, 1, -2]} color="#ff6f00" distort={0.2} speed={0.05} />
-          </Float>
-          
-          <Float speed={2} rotationIntensity={0.8} floatIntensity={1.5}>
-            <AnimatedSphere position={[4, -1, -1]} color="#ff9d45" distort={0.3} speed={0.1} />
-          </Float>
-          
-          <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
+          <group position={[4, -1, -1]}>
+            <AnimatedSphere color="#ff9d45" speed={0.1} />
+          </group>
         </Suspense>
       </Canvas>
     </div>

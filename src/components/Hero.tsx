@@ -1,31 +1,20 @@
-
 import React, { Suspense, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ArrowDown } from 'lucide-react';
-import FloatingObjects from './3d/FloatingObjects';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import AnimatedLogo from './3d/AnimatedLogo';
 
 const Hero: React.FC = () => {
   const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(true);
-  const [showLogo, setShowLogo] = useState(false);
-
+  
   useEffect(() => {
     // Simulate resource loading
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 500);
-    
-    const logoTimer = setTimeout(() => {
-      setShowLogo(true);
-    }, 1000);
+    }, 300);
     
     return () => {
       clearTimeout(timer);
-      clearTimeout(logoTimer);
     };
   }, []);
 
@@ -58,9 +47,6 @@ const Hero: React.FC = () => {
         </video>
       </div>
 
-      {/* Only render 3D elements when not loading */}
-      {!isLoading && <FloatingObjects className="opacity-50" />}
-
       <div className="container mx-auto px-4 py-20 relative z-20 text-center">
         {/* Loading indicator */}
         {isLoading ? (
@@ -77,28 +63,11 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full h-[200px] mb-8"
+            className="w-full h-[200px] mb-8 flex items-center justify-center"
           >
-            {showLogo && (
-              <Suspense fallback={
-                <div className="text-white text-xl font-bold flex items-center justify-center h-full">
-                  <div className="w-10 h-10 rounded-full border-4 border-orange border-t-transparent animate-spin mr-3"></div>
-                  Loading 3D...
-                </div>
-              }>
-                <Canvas 
-                  camera={{ position: [0, 0, 5], fov: 75 }}
-                  dpr={[0.5, 1.5]} // Optimize resolution
-                  frameloop="demand"
-                  gl={{ powerPreference: "low-power" }}
-                >
-                  <ambientLight intensity={0.4} />
-                  <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={0.8} castShadow />
-                  <AnimatedLogo text="ZONE" />
-                  <OrbitControls enableZoom={false} enablePan={false} />
-                </Canvas>
-              </Suspense>
-            )}
+            <div className="text-5xl md:text-7xl font-bold text-white">
+              <span className="text-orange">ZONE</span>
+            </div>
           </motion.div>
         )}
         
