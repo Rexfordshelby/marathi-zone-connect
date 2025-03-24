@@ -24,3 +24,18 @@ export interface AdminUser {
   username: string;
   email: string;
 }
+
+export interface TeamMember {
+  id?: string;
+  name: string;
+  role: string;
+  image?: string;
+  bio?: string;
+  socialLinks?: {
+    instagram?: string;
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+  };
+  isCEO?: boolean;
+}

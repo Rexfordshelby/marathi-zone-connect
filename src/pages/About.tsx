@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '@/components/NavBar';
 import Footer from '@/components/Footer';
@@ -7,6 +6,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Users, Award, Calendar, Star, Heart, CheckCircle2 } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const AboutPage = () => {
   return (
@@ -55,13 +55,14 @@ const AboutHeader = () => {
 const TeamSection = () => {
   const { t } = useLanguage();
   
+  const founder = {
+    name: 'Harish A. Hire',
+    role: 'CEO & Founder',
+    image: '/lovable-uploads/223a9b5c-ad03-4f3c-a1b6-e54980425062.png',
+    bio: 'Harish leads Zone Marathi with over 10 years of experience in PR and marketing within the entertainment industry, focusing on bringing Marathi talent to the mainstream.'
+  };
+  
   const team = [
-    {
-      name: 'Rahul Deshmukh',
-      role: 'Founder & CEO',
-      image: '/images/team/rahul.jpg',
-      bio: 'Rahul has over 15 years of experience in PR and marketing in the Marathi entertainment industry.'
-    },
     {
       name: 'Priya Joshi',
       role: 'Celebrity Relations Manager',
@@ -106,7 +107,43 @@ const TeamSection = () => {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        {/* Founder Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-12 mb-16"
+        >
+          <div className="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto bg-white rounded-lg overflow-hidden shadow-lg p-8">
+            <div className="w-full md:w-1/3 flex-shrink-0">
+              <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-orange">
+                <img 
+                  src={founder.image} 
+                  alt={founder.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            <div className="w-full md:w-2/3 text-center md:text-left">
+              <h3 className="text-2xl font-bold text-zoneBlack">{founder.name}</h3>
+              <p className="text-lg text-orange font-semibold mb-4">{founder.role}</p>
+              <p className="text-gray-700">{founder.bio}</p>
+              <div className="mt-4 flex justify-center md:justify-start">
+                <a 
+                  href="https://instagram.com/iamhaarisss777" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-orange hover:text-orange/80 transition-colors"
+                >
+                  @iamhaarisss777
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {team.map((member, index) => (
             <motion.div
               key={index}
