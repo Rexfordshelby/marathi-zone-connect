@@ -61,27 +61,6 @@ const TeamSection = () => {
     image: '/lovable-uploads/223a9b5c-ad03-4f3c-a1b6-e54980425062.png',
     bio: 'Harish leads Zone Marathi with over 10 years of experience in PR and marketing within the entertainment industry, focusing on bringing Marathi talent to the mainstream.'
   };
-  
-  const team = [
-    {
-      name: 'Priya Joshi',
-      role: 'Celebrity Relations Manager',
-      image: '/images/team/priya.jpg',
-      bio: 'Priya specializes in building and maintaining relationships with celebrities and influencers.'
-    },
-    {
-      name: 'Amit Patil',
-      role: 'Creative Director',
-      image: '/images/team/amit.jpg',
-      bio: 'Amit leads our creative team, developing innovative campaigns and visual content.'
-    },
-    {
-      name: 'Sneha Kulkarni',
-      role: 'Event Manager',
-      image: '/images/team/sneha.jpg',
-      bio: 'Sneha has successfully managed over 200 events, from small gatherings to large-scale productions.'
-    }
-  ];
 
   return (
     <section className="py-20 bg-white">
@@ -103,7 +82,7 @@ const TeamSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="section-subtitle"
           >
-            Meet the talented professionals who make Zone Marathi PR & Marketing a success.
+            Meet the leadership behind Zone Marathi PR & Marketing.
           </motion.p>
         </div>
 
@@ -113,9 +92,9 @@ const TeamSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-12 mb-16"
+          className="mt-12 max-w-4xl mx-auto"
         >
-          <div className="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto bg-white rounded-lg overflow-hidden shadow-lg p-8">
+          <div className="flex flex-col md:flex-row items-center gap-8 bg-white rounded-lg overflow-hidden shadow-lg p-8">
             <div className="w-full md:w-1/3 flex-shrink-0">
               <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-orange">
                 <img 
@@ -142,37 +121,6 @@ const TeamSection = () => {
             </div>
           </div>
         </motion.div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {team.map((member, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="card text-center overflow-hidden group"
-            >
-              <div className="relative w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden">
-                <img 
-                  src={member.image || '/images/placeholder.svg'} 
-                  alt={member.name} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-zoneBlack">
-                {member.name}
-              </h3>
-              <p className="text-orange font-medium mb-4">
-                {member.role}
-              </p>
-              <p className="text-sm text-zoneBlack/70">
-                {member.bio}
-              </p>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );
