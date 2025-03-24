@@ -23,7 +23,8 @@ const initialCelebrities: Celebrity[] = [
     id: '1',
     name: 'Raveena Tandon',
     profession: 'Bollywood Actress',
-    image: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7',
+    image: '/lovable-uploads/08adb860-2aba-4c66-a44b-4cd294295ab1.png',
+    isLocalImage: true,
     availability: true,
     socialLinks: {
       instagram: 'https://instagram.com/officialraveenatandon'
@@ -36,7 +37,8 @@ const initialCelebrities: Celebrity[] = [
     id: '2',
     name: 'Sonali Kulkarni',
     profession: 'Marathi & Bollywood Actress',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158',
+    image: '/lovable-uploads/8edf000c-21b9-43a1-a3ce-6fa20f5729dc.png',
+    isLocalImage: true,
     availability: true,
     socialLinks: {
       instagram: 'https://instagram.com/sonalikulkarni'
@@ -49,7 +51,8 @@ const initialCelebrities: Celebrity[] = [
     id: '3',
     name: 'Sayli Sanjeev',
     profession: 'Marathi Actress',
-    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d',
+    image: '/lovable-uploads/9df00911-df79-4fb4-a262-5e959664a704.png',
+    isLocalImage: true,
     availability: true,
     socialLinks: {
       instagram: 'https://instagram.com/sayali.sanjeev'
@@ -187,7 +190,7 @@ const CelebritySection: React.FC<CelebritySectionProps> = ({
               >
                 <div className="relative h-72 mb-6 rounded-lg overflow-hidden">
                   <img 
-                    src={celebrity.image || '/images/placeholder.svg'} 
+                    src={celebrity.isLocalImage ? celebrity.image : (celebrity.image || '/images/placeholder.svg')} 
                     alt={celebrity.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />

@@ -4,6 +4,7 @@ export interface Celebrity {
   name: string;
   profession: string;
   image?: string;
+  isLocalImage?: boolean;
   availability: boolean;
   socialLinks?: {
     instagram?: string;
