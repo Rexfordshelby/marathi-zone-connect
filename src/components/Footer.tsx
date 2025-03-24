@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Instagram, url: '#', label: 'Instagram' },
+    { icon: Instagram, url: 'https://instagram.com/iamhaarisss777', label: 'Instagram' },
     { icon: Facebook, url: '#', label: 'Facebook' },
     { icon: Youtube, url: '#', label: 'YouTube' },
     { icon: Twitter, url: '#', label: 'Twitter' },
@@ -101,7 +101,9 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
                 <PhoneCall size={18} className="text-orange mt-1 flex-shrink-0" />
-                <span className="text-gray-300">+91 1234567890</span>
+                <a href="tel:+917715808527" className="text-gray-300 hover:text-orange transition-colors">
+                  +91 7715808527
+                </a>
               </li>
               <li className="flex items-start space-x-3">
                 <Mail size={18} className="text-orange mt-1 flex-shrink-0" />
@@ -115,8 +117,20 @@ const Footer: React.FC = () => {
               <li className="flex items-start space-x-3">
                 <MapPin size={18} className="text-orange mt-1 flex-shrink-0" />
                 <span className="text-gray-300">
-                  {t('footer.address')}
+                  Udaymitra CHS A Wing, Room No. 01,<br />
+                  Kurla East, Mumbai - 400024
                 </span>
+              </li>
+              <li className="flex items-start space-x-3">
+                <Instagram size={18} className="text-orange mt-1 flex-shrink-0" />
+                <a 
+                  href="https://instagram.com/iamhaarisss777" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-300 hover:text-orange transition-colors"
+                >
+                  @iamhaarisss777
+                </a>
               </li>
             </ul>
           </motion.div>
