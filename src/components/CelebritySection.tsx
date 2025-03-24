@@ -65,7 +65,8 @@ const initialCelebrities: Celebrity[] = [
     id: '4',
     name: 'Shivani Surve',
     profession: 'Marathi & Hindi TV Actress',
-    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
+    image: '/placeholder.svg',
+    isLocalImage: true,
     availability: true,
     socialLinks: {
       instagram: 'https://instagram.com/shivanisurve'
@@ -78,7 +79,8 @@ const initialCelebrities: Celebrity[] = [
     id: '5',
     name: 'Shreya Bugde',
     profession: 'Marathi TV & Film Actress',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475',
+    image: '/placeholder.svg',
+    isLocalImage: true,
     availability: true,
     socialLinks: {
       instagram: 'https://instagram.com/shreyabugade'
@@ -120,6 +122,13 @@ const CelebritySection: React.FC<CelebritySectionProps> = ({
     facebook: Facebook,
     twitter: Twitter,
     youtube: Youtube
+  };
+
+  // Function to handle image loading errors
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = e.target as HTMLImageElement;
+    console.error("Image failed to load:", target.src);
+    target.src = "/placeholder.svg"; // Fallback to placeholder
   };
 
   return (
@@ -190,9 +199,10 @@ const CelebritySection: React.FC<CelebritySectionProps> = ({
               >
                 <div className="relative h-72 mb-6 rounded-lg overflow-hidden">
                   <img 
-                    src={celebrity.isLocalImage ? celebrity.image : (celebrity.image || '/images/placeholder.svg')} 
+                    src={celebrity.image || '/placeholder.svg'} 
                     alt={celebrity.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={handleImageError}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-zoneBlack to-transparent opacity-50"></div>
                   

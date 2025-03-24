@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navbar from '@/components/NavBar';
 import Footer from '@/components/Footer';
@@ -55,13 +56,6 @@ const AboutHeader = () => {
 const TeamSection = () => {
   const { t } = useLanguage();
   
-  const founder = {
-    name: 'Harish A. Hire',
-    role: 'CEO & Founder',
-    image: '/lovable-uploads/223a9b5c-ad03-4f3c-a1b6-e54980425062.png',
-    bio: 'Harish leads Zone Marathi with over 10 years of experience in PR and marketing within the entertainment industry, focusing on bringing Marathi talent to the mainstream.'
-  };
-
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 md:px-6">
@@ -98,16 +92,24 @@ const TeamSection = () => {
             <div className="w-full md:w-1/3 flex-shrink-0">
               <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-orange">
                 <img 
-                  src={founder.image} 
-                  alt={founder.name}
+                  src="/lovable-uploads/223a9b5c-ad03-4f3c-a1b6-e54980425062.png" 
+                  alt="Harish A. Hire - CEO & Founder"
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    console.error("Image failed to load:", target.src);
+                    target.src = "/placeholder.svg"; // Fallback image
+                  }}
                 />
               </div>
             </div>
             <div className="w-full md:w-2/3 text-center md:text-left">
-              <h3 className="text-2xl font-bold text-zoneBlack">{founder.name}</h3>
-              <p className="text-lg text-orange font-semibold mb-4">{founder.role}</p>
-              <p className="text-gray-700">{founder.bio}</p>
+              <h3 className="text-2xl font-bold text-zoneBlack">Harish A. Hire</h3>
+              <p className="text-lg text-orange font-semibold mb-4">CEO & Founder</p>
+              <p className="text-gray-700">
+                Harish leads Zone Marathi with over 10 years of experience in PR and marketing 
+                within the entertainment industry, focusing on bringing Marathi talent to the mainstream.
+              </p>
               <div className="mt-4 flex justify-center md:justify-start">
                 <a 
                   href="https://instagram.com/iamhaarisss777" 
