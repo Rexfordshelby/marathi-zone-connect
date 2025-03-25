@@ -23,7 +23,7 @@ const initialCelebrities: Celebrity[] = [
     id: '1',
     name: 'Raveena Tandon',
     profession: 'Bollywood Actress',
-    image: '/lovable-uploads/08adb860-2aba-4c66-a44b-4cd294295ab1.png',
+    image: '/placeholder.svg',
     isLocalImage: true,
     availability: true,
     socialLinks: {
@@ -37,7 +37,7 @@ const initialCelebrities: Celebrity[] = [
     id: '2',
     name: 'Sonali Kulkarni',
     profession: 'Marathi & Bollywood Actress',
-    image: '/lovable-uploads/8edf000c-21b9-43a1-a3ce-6fa20f5729dc.png',
+    image: '/placeholder.svg',
     isLocalImage: true,
     availability: true,
     socialLinks: {
@@ -51,7 +51,7 @@ const initialCelebrities: Celebrity[] = [
     id: '3',
     name: 'Sayli Sanjeev',
     profession: 'Marathi Actress',
-    image: '/lovable-uploads/9df00911-df79-4fb4-a262-5e959664a704.png',
+    image: '/placeholder.svg',
     isLocalImage: true,
     availability: true,
     socialLinks: {
@@ -124,13 +124,6 @@ const CelebritySection: React.FC<CelebritySectionProps> = ({
     youtube: Youtube
   };
 
-  // Function to handle image loading errors
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const target = e.target as HTMLImageElement;
-    console.error("Image failed to load:", target.src);
-    target.src = "/placeholder.svg"; // Fallback to placeholder
-  };
-
   return (
     <section id="celebrities" className="py-20 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
@@ -198,12 +191,16 @@ const CelebritySection: React.FC<CelebritySectionProps> = ({
                 className="card group overflow-hidden bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow"
               >
                 <div className="relative h-72 mb-6 rounded-lg overflow-hidden">
-                  <img 
-                    src={celebrity.image || '/placeholder.svg'} 
-                    alt={celebrity.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    onError={handleImageError}
-                  />
+                  <Avatar className="w-full h-full rounded-lg">
+                    <AvatarImage 
+                      src={celebrity.image} 
+                      alt={celebrity.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <AvatarFallback className="bg-gray-200 text-zoneBlack text-2xl">
+                      {celebrity.name.split(' ').map(n => n[0]).join('')}
+                    </AvatarFallback>
+                  </Avatar>
                   <div className="absolute inset-0 bg-gradient-to-t from-zoneBlack to-transparent opacity-50"></div>
                   
                   {/* Availability Badge */}

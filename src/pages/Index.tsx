@@ -77,11 +77,16 @@ const CeoSection = () => {
           <div className="flex flex-col md:flex-row items-center gap-8 max-w-4xl mx-auto bg-white rounded-lg overflow-hidden shadow-lg p-8">
             <div className="w-full md:w-1/3 flex-shrink-0">
               <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-orange">
-                <img 
-                  src="/lovable-uploads/223a9b5c-ad03-4f3c-a1b6-e54980425062.png" 
-                  alt="Harish A. Hire - CEO & Founder"
-                  className="w-full h-full object-cover"
-                />
+                <Avatar className="w-full h-full">
+                  <AvatarImage 
+                    src="/placeholder.svg" 
+                    alt="Harish A. Hire - CEO & Founder"
+                    className="w-full h-full object-cover"
+                  />
+                  <AvatarFallback className="bg-orange/20 text-orange text-2xl">
+                    HAH
+                  </AvatarFallback>
+                </Avatar>
               </div>
             </div>
             <div className="w-full md:w-2/3 text-center md:text-left">

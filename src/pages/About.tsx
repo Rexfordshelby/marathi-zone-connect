@@ -91,16 +91,16 @@ const TeamSection = () => {
           <div className="flex flex-col md:flex-row items-center gap-8 bg-white rounded-lg overflow-hidden shadow-lg p-8">
             <div className="w-full md:w-1/3 flex-shrink-0">
               <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-orange">
-                <img 
-                  src="/lovable-uploads/223a9b5c-ad03-4f3c-a1b6-e54980425062.png" 
-                  alt="Harish A. Hire - CEO & Founder"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    console.error("Image failed to load:", target.src);
-                    target.src = "/placeholder.svg"; // Fallback image
-                  }}
-                />
+                <Avatar className="w-full h-full">
+                  <AvatarImage 
+                    src="/placeholder.svg" 
+                    alt="Harish A. Hire - CEO & Founder"
+                    className="w-full h-full object-cover"
+                  />
+                  <AvatarFallback className="bg-orange/20 text-orange text-xl">
+                    HAH
+                  </AvatarFallback>
+                </Avatar>
               </div>
             </div>
             <div className="w-full md:w-2/3 text-center md:text-left">
