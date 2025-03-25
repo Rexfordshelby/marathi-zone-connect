@@ -23,7 +23,7 @@ const initialCelebrities: Celebrity[] = [
     id: '1',
     name: 'Raveena Tandon',
     profession: 'Bollywood Actress',
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/8bdb1d94-b362-43de-8139-62c1911eb58e.png',
     isLocalImage: true,
     availability: true,
     socialLinks: {
@@ -37,7 +37,7 @@ const initialCelebrities: Celebrity[] = [
     id: '2',
     name: 'Sonali Kulkarni',
     profession: 'Marathi & Bollywood Actress',
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/f5f220a0-dc2d-4566-aeee-83b7db56110b.png',
     isLocalImage: true,
     availability: true,
     socialLinks: {
@@ -51,7 +51,7 @@ const initialCelebrities: Celebrity[] = [
     id: '3',
     name: 'Sayli Sanjeev',
     profession: 'Marathi Actress',
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/61b6d8aa-6fb5-4961-9153-0d4875c18fd4.png',
     isLocalImage: true,
     availability: true,
     socialLinks: {
