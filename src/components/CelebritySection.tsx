@@ -16,6 +16,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Celebrity } from '@/types';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Skeleton } from '@/components/ui/skeleton';
 
 // Note: In a real application, this would be fetched from an API
 const initialCelebrities: Celebrity[] = [
@@ -65,7 +66,7 @@ const initialCelebrities: Celebrity[] = [
     id: '4',
     name: 'Shivani Surve',
     profession: 'Marathi & Hindi TV Actress',
-    image: '/placeholder.svg',
+    image: '/lovable-uploads/3314e02d-1ac1-4573-8bd5-6a56942cae39.png',
     isLocalImage: true,
     availability: true,
     socialLinks: {
@@ -103,6 +104,7 @@ const CelebritySection: React.FC<CelebritySectionProps> = ({
   const { t } = useLanguage();
   const [celebrities] = useState<Celebrity[]>(initialCelebrities);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [loadingImages, setLoadingImages] = useState<Record<string, boolean>>({});
 
   // Only apply limit if it's greater than 0
   const displayedCelebrities = limit > 0 ? celebrities.slice(0, limit) : celebrities;
@@ -115,6 +117,15 @@ const CelebritySection: React.FC<CelebritySectionProps> = ({
   
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
+
+  const handleImageLoad = (id: string) => {
+    setLoadingImages(prev => ({ ...prev, [id]: false }));
+  };
+
+  const handleImageError = (id: string) => {
+    setLoadingImages(prev => ({ ...prev, [id]: false }));
+    console.error(`Failed to load image for celebrity ${id}`);
   };
 
   const socialIcons = {
@@ -192,10 +203,15 @@ const CelebritySection: React.FC<CelebritySectionProps> = ({
               >
                 <div className="relative h-72 mb-6 rounded-lg overflow-hidden">
                   <Avatar className="w-full h-full rounded-lg">
+                    {loadingImages[celebrity.id] !== false && (
+                      <Skeleton className="absolute inset-0 w-full h-full rounded-lg" />
+                    )}
                     <AvatarImage 
                       src={celebrity.image} 
                       alt={celebrity.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      onLoad={() => handleImageLoad(celebrity.id)}
+                      onError={() => handleImageError(celebrity.id)}
                     />
                     <AvatarFallback className="bg-gray-200 text-zoneBlack text-2xl">
                       {celebrity.name.split(' ').map(n => n[0]).join('')}
