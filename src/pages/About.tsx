@@ -93,7 +93,7 @@ const TeamSection = () => {
               <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-orange">
                 <Avatar className="w-full h-full">
                   <AvatarImage 
-                    src="/placeholder.svg" 
+                    src="/lovable-uploads/da10d1ff-59ea-430b-8ebd-08a41f71c493.png" 
                     alt="Harish A. Hire - CEO & Founder"
                     className="w-full h-full object-cover"
                   />
